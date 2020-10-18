@@ -50,4 +50,4 @@ if(currentHour == 6){
 }
 
 // Use token to login to the bot.
-client.login(ENV['BOT_TOKEN']);
+client.login(process.env.BOT_TOKEN);
