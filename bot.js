@@ -1,5 +1,6 @@
 // Require Modules
 const Discord = require("discord.js");
+const config = require('./config.json');
 
 // Create a discord client.
 const client = new Discord.Client();
@@ -7,19 +8,47 @@ const client = new Discord.Client();
 //Make a Date Variable
 var event = new Date();
 
+//Make a var for stop reminder.
+var stopReminder = false;
+
 currentHour = event.getUTCHours();
+
+currentMinute = event.getUTCMinutes();
 
 // When read run code.
 client.once('ready', () => {
     console.log("Ready!");
-    console.log(currentHour);
 });
 
-if(currentHour == 7){
+if(currentHour == 16){
     client.once('ready', () => {
-        client.users.cache.get("366327612014067722").send("Take ur pills. Its an order.");
-    });
+        reminderTimer();
+    }); 
+}
+
+function reminderTimer(){
+    setInterval(function () {
+        if(stopReminder == false){   
+            client.users.cache.get("366327612014067722").send("Take ur pills. Its an order.");
+        } else {
+            clearInterval();
+        }
+    }, 300000);            
+    
+}
+
+client.on('message', msg => {
+    if (msg.channel.type == "dm") {
+        if (msg.content === "Stop"){
+             stopReminder = true;
+             msg.reply("Reminder Stopped");
+         }
+     }
+});
+
+if(currentHour == 6){
+    stopReminder = false;
 }
 
 // Use token to login to the bot.
-client.login('NzU4Nzg5Njc3OTgwOTc1MTQ0.X20D9A.aoGyTeqw1kAzLjzbb7Rbd925N_0');
+client.login(config.token);
