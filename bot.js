@@ -20,7 +20,7 @@ client.once('ready', () => {
     console.log("Ready!");
 });
 
-if(currentHour == 16){
+if(currentHour == 7){
     client.once('ready', () => {
         reminderTimer();
     }); 
