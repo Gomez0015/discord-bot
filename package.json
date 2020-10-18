@@ -1,0 +1,15 @@
+{
+  "name": "mary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
