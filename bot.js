@@ -15,7 +15,7 @@ currentHour = event.getUTCHours();
 
 currentMinute = event.getUTCMinutes();
 
-// When read run code.
+// When ready run code.
 client.once('ready', () => {
     console.log("Ready!");
 });
@@ -51,4 +51,4 @@ if(currentHour == 6){
 }
 
 // Use token to login to the bot.
-client.login(config.token);
+client.login(ENV['BOT_TOKEN']);
