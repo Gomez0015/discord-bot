@@ -1,5 +1,7 @@
 // Require Modules
 const Discord = require("discord.js");
+const schedule = require('node-schedule');
+
 
 // Create a discord client.
 const client = new Discord.Client();
@@ -12,22 +14,22 @@ var stopReminder = false;
 
 currentHour = event.getUTCHours();
 
-currentMinute = event.getUTCMinutes();
-
 // When ready run code.
 client.once('ready', () => {
     console.log("Ready!");
+    console.log(currentHour);
 });
 
-if(currentHour == 7){
+var startTimer = schedule.scheduleJob('9 * * *', function(){
     client.once('ready', () => {
         reminderTimer();
     }); 
-}
+});
 
 function reminderTimer(){
+    console.log("Sending Reminders..."); 
     setInterval(function () {
-        if(stopReminder == false){   
+        if(stopReminder == false){  
             client.users.cache.get("366327612014067722").send("Take ur pills. Its an order.");
         } else {
             clearInterval();
@@ -41,13 +43,14 @@ client.on('message', msg => {
         if (msg.content === "Stop"){
              stopReminder = true;
              msg.reply("Reminder Stopped");
+             console.log("Stopping Reminder...");
          }
      }
 });
 
-if(currentHour == 6){
-    stopReminder = false;
-}
+var resetVar = schedule.scheduleJob('8 * * *', function(){
+    stopReminder= false;
+});
 
 // Use token to login to the bot.
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN || "NzU4Nzg5Njc3OTgwOTc1MTQ0.X20D9A.4KMn2H3R-jC4zWcvd4oenM-jjao");
