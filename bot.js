@@ -53,4 +53,4 @@ var resetVar = schedule.scheduleJob('8 * * *', function(){
 });
 
 // Use token to login to the bot.
-client.login(process.env.BOT_TOKEN || "NzU4Nzg5Njc3OTgwOTc1MTQ0.X20D9A.4KMn2H3R-jC4zWcvd4oenM-jjao");
+client.login(process.env.BOT_TOKEN);
