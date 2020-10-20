@@ -1,29 +1,26 @@
 // Require Modules
 const Discord = require("discord.js");
-const schedule = require('node-schedule');
+var cron = require('node-cron');
 
 
 // Create a discord client.
 const client = new Discord.Client();
 
-//Make a Date Variable
-var event = new Date();
-
 //Make a var for stop reminder.
 var stopReminder = false;
-
-currentHour = event.getUTCHours();
 
 // When ready run code.
 client.once('ready', () => {
     console.log("Ready!");
-    console.log(currentHour);
 });
 
-var startTimer = schedule.scheduleJob('9 * * *', function(){
+cron.schedule('0 7 * * *', () => {
     client.once('ready', () => {
         reminderTimer();
     }); 
+  }, {
+    scheduled: true,
+    timezone: "GMT"
 });
 
 function reminderTimer(){
@@ -48,8 +45,11 @@ client.on('message', msg => {
      }
 });
 
-var resetVar = schedule.scheduleJob('8 * * *', function(){
+cron.schedule('0 6 * * *', () => {
     stopReminder= false;
+  }, {
+    scheduled: true,
+    timezone: "GMT"
 });
 
 // Use token to login to the bot.
