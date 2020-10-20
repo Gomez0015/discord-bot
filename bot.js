@@ -14,13 +14,13 @@ client.once('ready', () => {
     console.log("Ready!");
 });
 
-cron.schedule('0 7 * * *', () => {
+cron.schedule('0 8 * * *', () => {
     client.once('ready', () => {
         reminderTimer();
     }); 
   }, {
     scheduled: true,
-    timezone: "GMT"
+    timezone: "Africa/Casablanca"
 });
 
 function reminderTimer(){
@@ -45,11 +45,11 @@ client.on('message', msg => {
      }
 });
 
-cron.schedule('0 6 * * *', () => {
+cron.schedule('0 7 * * *', () => {
     stopReminder= false;
   }, {
     scheduled: true,
-    timezone: "GMT"
+    timezone: "Africa/Casablanca"
 });
 
 // Use token to login to the bot.
