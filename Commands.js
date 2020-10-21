@@ -27,7 +27,7 @@ exports.basicResponses = [
     },
     {
         question: "xcommands",
-        answer: botFunctions.getAllCommands.toString()
+        answer: botFunctions.getAllCommands
     }
 ];
 
