@@ -6,13 +6,16 @@ const commands = require('./Commands.js');
 //Exports
 let basicResponseArray = commands.basicResponses;
 
-prefix = process.env.BOT_PREFIX;
+prefix = process.env.BOT_PREFIX || "x";
 
 // Create a discord client.
 const client = new Discord.Client();
 
 //Make a var for stop reminder.
 var stopReminder = false;
+
+//Make a var for Commands Array
+var allCommandsArray = [];
 
 // When ready run code.
 client.once('ready', () => {
@@ -68,26 +71,28 @@ client.on('message', msg => {
         basicResponseArray.forEach(item => {
             if(msg.content === item.question){
                 msg.reply(item.answer);
-            }          
-        });         
+            } 
+        });   
+        if(msg.content === "xcommands"){
+            msg.reply(JSON.stringify(allCommandsArray));
+        }            
     }
 });
 
 //Answers the "xcommands" Question
-var allCommands = [];
 
-exports.getAllCommands = function(){
+function getAllCommands() {
 
-    basicResponseArray.forEach((item, index) => {
-        if (index === basicResponseArray.length - 1){ 
-            allCommands.push(item.question); 
-        } else {
-            allCommands.push(item.question + ', ');
+    basicResponseArray.forEach((item) => {
+        if(allCommandsArray.length < basicResponseArray.length){
+            allCommandsArray.push(item.question);
+        }else if(allCommandsArray.length = basicResponseArray.length){
+            return;
         }
     });
-
-    return allCommands;
 };
+
+getAllCommands();
 
 client.once('reconnecting', () => {
  console.log('Reconnecting!');
@@ -97,4 +102,4 @@ client.once('disconnect', () => {
 });
 
 // Use token to login to the bot.
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN || "NzU4Nzg5Njc3OTgwOTc1MTQ0.X20D9A.th09eJRnG4mkagso1RjJhTcyc-A");

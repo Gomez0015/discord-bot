@@ -1,5 +1,3 @@
-const {getAllCommands} = require('./bot.js');
-
 exports.basicResponses = [
     {
         question: "xtest",
@@ -24,10 +22,6 @@ exports.basicResponses = [
     {
         question: "xdrawinggame",
         answer: "https://sketchful.io/"
-    },
-    {
-        question: "xcommands",
-        answer: getAllCommands
     }
 ];
 
