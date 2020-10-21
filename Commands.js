@@ -27,7 +27,7 @@ exports.basicResponses = [
     },
     {
         question: "xcommands",
-        answer: getAllCommands()
+        answer: getAllCommands
     }
 ];
 
