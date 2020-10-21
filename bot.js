@@ -87,7 +87,7 @@ module.exports = function getAllCommands(){
     });
 
     return allCommands;
-}
+};
 
 client.once('reconnecting', () => {
  console.log('Reconnecting!');
