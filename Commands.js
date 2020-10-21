@@ -29,16 +29,22 @@ const basicResponsesExport = [
     },
     {
         question: "xcommands",
-        answer: getAllCommands()
+        answer: allCommandsText
     }
 ];
 
 var allCommands = [];
 
+var allCommandsText = getAllCommands();
+
 function getAllCommands(){
 
-    basicResponsesExport.forEach(item => {
-        allCommands.push(item.question);
+    basicResponsesExport.forEach(item, idx, array => {
+        if (idx === array.length - 1){ 
+            allCommands.push(item.question); 
+        } else {
+            allCommands.push(item.question + ', ');
+        }
     });
 
     return allCommands;
