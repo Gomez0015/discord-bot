@@ -73,6 +73,22 @@ client.on('message', msg => {
     }
 });
 
+//Answers the "xcommands" Question
+var allCommands = [];
+
+module.exports.getAllCommands = function getAllCommands(){
+
+    basicResponseArray.forEach((item, index) => {
+        if (index === basicResponseArray.length - 1){ 
+            allCommands.push(item.question); 
+        } else {
+            allCommands.push(item.question + ', ');
+        }
+    });
+
+    return allCommands;
+}
+
 client.once('reconnecting', () => {
  console.log('Reconnecting!');
 });

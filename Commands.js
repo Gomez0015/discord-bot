@@ -1,4 +1,4 @@
-const { musicLink } = require('./bot.js');
+const botFunctions = require('./bot.js');
 
 exports.basicResponsesExport
 
@@ -29,29 +29,7 @@ const basicResponsesExport = [
     },
     {
         question: "xcommands",
-        answer: allCommandsText
+        answer: botFunctions.getAllCommands
     }
 ];
 
-var allCommands = [];
-
-var allCommandsText;
-
-function getAllCommands(){
-
-    basicResponsesExport.forEach((item, index) => {
-        if (index === basicResponsesExport.length - 1){ 
-            allCommands.push(item.question); 
-        } else {
-            allCommands.push(item.question + ', ');
-        }
-    });
-
-    return allCommands;
-}
-
-
-setInterval(function(){
-    allCommandsText = getAllCommands();
-    clearInterval();
-}, 5000);
