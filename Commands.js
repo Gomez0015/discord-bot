@@ -1,4 +1,4 @@
-const botFunctions = require('./bot.js');
+const {getAllCommands} = require('./bot.js');
 
 exports.basicResponses = [
     {
@@ -27,7 +27,7 @@ exports.basicResponses = [
     },
     {
         question: "xcommands",
-        answer: botFunctions.getAllCommands
+        answer: getAllCommands()
     }
 ];
 
