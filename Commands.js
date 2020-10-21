@@ -35,7 +35,7 @@ const basicResponsesExport = [
 
 var allCommands = [];
 
-var allCommandsText = getAllCommands();
+var allCommandsText;
 
 function getAllCommands(){
 
@@ -49,3 +49,9 @@ function getAllCommands(){
 
     return allCommands;
 }
+
+
+setInterval(function(){
+    allCommandsText = getAllCommands();
+    clearInterval();
+}, 5000);
