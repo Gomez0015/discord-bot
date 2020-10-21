@@ -39,8 +39,8 @@ var allCommandsText = getAllCommands();
 
 function getAllCommands(){
 
-    basicResponsesExport.forEach(item, idx, array => {
-        if (idx === array.length - 1){ 
+    basicResponsesExport.forEach((item, index) => {
+        if (index === basicResponsesExport.length - 1){ 
             allCommands.push(item.question); 
         } else {
             allCommands.push(item.question + ', ');
