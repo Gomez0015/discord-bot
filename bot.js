@@ -14,7 +14,7 @@ client.once('ready', () => {
 });
 
 client.once('ready', () => {
-    cron.schedule('*/2 8 * * *', () => {
+    cron.schedule('*/2 9 * * *', () => {
         console.log("its 8 am.");
         reminderTimer();
     });
@@ -37,7 +37,7 @@ client.on('message', msg => {
      }
 });
 
-cron.schedule('0 7 * * *', () => {
+cron.schedule('0 6 * * *', () => {
     stopReminder = false;
     console.log("Stop Reminder Set to false")
   }, {
@@ -46,4 +46,4 @@ cron.schedule('0 7 * * *', () => {
 });
 
 // Use token to login to the bot.
-client.login(process.env.BOT_TOKEN || "NzU4Nzg5Njc3OTgwOTc1MTQ0.X20D9A.CYTdHxo8WClvViiFAKTs998XroA");
+client.login(process.env.BOT_TOKEN);
