@@ -1,7 +1,6 @@
 // Require Modules
 const Discord = require("discord.js");
-var cron = require('node-cron');
-
+const cron = require('node-cron');
 
 // Create a discord client.
 const client = new Discord.Client();
@@ -14,25 +13,18 @@ client.once('ready', () => {
     console.log("Ready!");
 });
 
-cron.schedule('0 8 * * *', () => {
-    client.once('ready', () => {
+client.once('ready', () => {
+    cron.schedule('*/2 8 * * *', () => {
+        console.log("its 8 am.");
         reminderTimer();
-    }); 
-  }, {
-    scheduled: true,
-    timezone: "Africa/Casablanca"
+    });
 });
 
 function reminderTimer(){
     console.log("Sending Reminders..."); 
-    setInterval(function () {
-        if(stopReminder == false){  
-            client.users.cache.get("366327612014067722").send("Take ur pills. Its an order.");
-        } else {
-            clearInterval();
-        }
-    }, 300000);            
-    
+    if(stopReminder == false){  
+        client.users.cache.get("366327612014067722").send("Take ur pills. Its an order.");
+    }        
 }
 
 client.on('message', msg => {
@@ -46,11 +38,12 @@ client.on('message', msg => {
 });
 
 cron.schedule('0 7 * * *', () => {
-    stopReminder= false;
+    stopReminder = false;
+    console.log("Stop Reminder Set to false")
   }, {
     scheduled: true,
     timezone: "Africa/Casablanca"
 });
 
 // Use token to login to the bot.
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN || "NzU4Nzg5Njc3OTgwOTc1MTQ0.X20D9A.CYTdHxo8WClvViiFAKTs998XroA");
