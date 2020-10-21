@@ -14,8 +14,14 @@ client.once('ready', () => {
 });
 
 client.once('ready', () => {
-    cron.schedule('*/2 9 * * *', () => {
-        console.log("its 8 am.");
+    cron.schedule('*/5 9 * * *', () => {
+        reminderTimer();
+    });
+});
+
+client.once('ready', () => {
+    cron.schedule('0 9 * * *', () => {
+        console.log("its 9 am.");
         reminderTimer();
     });
 });
