@@ -24,5 +24,20 @@ exports.basicResponses =  [
     {
         question: "xdrawinggame",
         answer: "https://sketchful.io/"
+    },
+    {
+        question: "xcommands",
+        answer: getAllCommands()
     }
 ];
+
+var allCommands = [];
+
+function getAllCommands(){
+
+    basicResponses.forEach(item => {
+        allCommands.push(item.question);
+    });
+
+    return allCommands;
+}
