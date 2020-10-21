@@ -6,7 +6,7 @@ const commands = require('./Commands.js');
 //Exports
 let basicResponseArray = commands.basicResponses;
 
-prefix = process.env.BOT_PREFIX || "x";
+prefix = process.env.BOT_PREFIX;
 
 // Create a discord client.
 const client = new Discord.Client();
@@ -81,4 +81,4 @@ client.once('disconnect', () => {
 });
 
 // Use token to login to the bot.
-client.login(process.env.BOT_TOKEN || "NzU4Nzg5Njc3OTgwOTc1MTQ0.X20D9A.2lTe1srYHaN7C5XOVmDgg4t0i3o");
+client.login(process.env.BOT_TOKEN);
