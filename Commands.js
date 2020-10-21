@@ -1,8 +1,6 @@
 const botFunctions = require('./bot.js');
 
-exports.basicResponsesExport
-
-const basicResponsesExport = [
+exports.basicResponses = [
     {
         question: "xtest",
         answer: "u suck balls"
