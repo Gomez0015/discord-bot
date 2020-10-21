@@ -76,7 +76,7 @@ client.on('message', msg => {
 //Answers the "xcommands" Question
 var allCommands = [];
 
-module.exports = function getAllCommands(){
+module.exports = function (){
 
     basicResponseArray.forEach((item, index) => {
         if (index === basicResponseArray.length - 1){ 
