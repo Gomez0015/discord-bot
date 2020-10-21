@@ -1,6 +1,8 @@
 const { musicLink } = require('./bot.js');
 
-exports.basicResponses =  [
+exports.basicResponsesExport
+
+const basicResponsesExport = [
     {
         question: "xtest",
         answer: "u suck balls"
@@ -35,7 +37,7 @@ var allCommands = [];
 
 function getAllCommands(){
 
-    basicResponses.forEach(item => {
+    basicResponsesExport.forEach(item => {
         allCommands.push(item.question);
     });
 

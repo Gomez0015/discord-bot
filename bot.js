@@ -4,7 +4,7 @@ const cron = require('node-cron');
 const commands = require('./Commands.js');
 
 //Exports
-let basicResponseArray = commands.basicResponses;
+let basicResponseArray = commands.basicResponsesExport;
 
 prefix = process.env.BOT_PREFIX;
 
