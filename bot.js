@@ -21,7 +21,7 @@ client.once('ready', () => {
 
 //Mary Pill Reminder Start
 client.once('ready', () => {
-    cron.schedule('*/5 9 * * *', () => {
+    cron.schedule('*/5 7 * * *', () => {
         reminderTimer();
     });
 });
