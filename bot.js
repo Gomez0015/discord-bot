@@ -25,15 +25,15 @@ client.once('ready', () => {
 //Mary Pill Reminder Start
 client.once('ready', () => {
     cron.schedule('*/5 7 * * *', () => {
-        reminderTimer();
+        if(stopReminder == false){ 
+            reminderTimer();
+        }
     });
 });
 
 function reminderTimer(){
     console.log("Sending Reminder..."); 
-    if(stopReminder == false){  
-        client.users.cache.get("366327612014067722").send("Take ur pills. Its an order.");
-    }        
+    client.users.cache.get("366327612014067722").send("Take ur pills. Its an order.");      
 }
 
 client.on('message', msg => {
