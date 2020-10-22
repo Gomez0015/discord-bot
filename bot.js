@@ -29,13 +29,6 @@ client.once('ready', () => {
     });
 });
 
-client.once('ready', () => {
-    cron.schedule('0 7 * * *', () => {
-        console.log("its 9 am...");
-        reminderTimer();
-    });
-});
-
 function reminderTimer(){
     console.log("Sending Reminder..."); 
     if(stopReminder == false){  
