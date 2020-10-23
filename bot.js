@@ -38,7 +38,7 @@ client.once('ready', () => {
 
 function reminderTimer(){
     console.log("Sending Reminder..."); 
-    client.users.cache.get("366327612014067722").send("Take ur pills. Its an order.");      
+    client.users.cache.get(process.env.MARY_ID).send("Take ur pills. Its an order.");      
 }
 
 client.on('message', msg => {
