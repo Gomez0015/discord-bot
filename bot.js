@@ -64,7 +64,7 @@ client.on('guildMemberAdd', member => {
     member.roles.add(role);
 });
 
-bot.on('messageReactionAdd', async (reaction, user) => {
+client.on('messageReactionAdd', async (reaction, user) => {
     //Filter the reaction
     if (reaction.id === '767608920134254652') {
      // Define the emoji user add
