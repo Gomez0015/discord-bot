@@ -64,6 +64,17 @@ client.on('guildMemberAdd', member => {
     member.roles.add(role);
 });
 
+bot.on('messageReactionAdd', async (reaction, user) => {
+    //Filter the reaction
+    if (reaction.id === '767608920134254652') {
+     // Define the emoji user add
+     let role = message.guild.roles.cache.find((role) => role.name === 'Verified');
+     if (message.channel.name === 'please-read-first') {
+      message.member.addRole(role.id);
+     }
+    }
+});
+
 //Basic Commands
 client.on('message', msg => {
     if (msg.author.bot) return;
