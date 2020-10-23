@@ -2,6 +2,11 @@
 const Discord = require("discord.js");
 const cron = require('node-cron');
 const commands = require('./Commands.js');
+const badwordsArray = require('badwords/array');
+const AntiSpam = require('discord-anti-spam');
+
+//Turn array to full uppercase
+const finalBadwordsArray = badwordsArray.map(badwordsArray => badwordsArray.toUpperCase());
 
 //Exports
 let basicResponseArray = commands.basicResponses;
@@ -87,6 +92,42 @@ function getAllCommands() {
 
 getAllCommands();
 
+// Profanity Filter and ALLCAPS filter and Anti-Spam
+client.on("message", msg => {
+    if(msg.author.bot) return;
+    if(msg.channel.type == "text"){
+        if(finalBadwordsArray.includes(msg.content.toUpperCase().trim().replace(/\s/g, ''))){
+            msg.delete();
+            msg.reply("Hey! Thats a No No Word.");
+        }
+        if(msg.content === msg.content.toUpperCase()){
+            msg.delete();
+            msg.reply("Dont type in all caps please");
+        }
+    }
+});
+
+const antiSpam = new AntiSpam({
+    warnThreshold: 3, // Amount of messages sent in a row that will cause a warning.
+    kickThreshold: 7, // Amount of messages sent in a row that will cause a kick.
+    banThreshold: 10, // Amount of messages sent in a row that will cause a ban.
+    maxInterval: 2000, // Amount of time (in milliseconds) in which messages are considered spam.
+    warnMessage: '{@user}, Please stop spamming.', // Message that will be sent in chat upon warning a user.
+    kickMessage: '**{user_tag}** has been kicked for spamming.', // Message that will be sent in chat upon kicking a user.
+    banMessage: '**{user_tag}** has been banned for spamming.', // Message that will be sent in chat upon banning a user.
+    maxDuplicatesWarning: 7, // Amount of duplicate messages that trigger a warning.
+    maxDuplicatesKick: 10, // Amount of duplicate messages that trigger a warning.
+    maxDuplicatesBan: 12, // Amount of duplicate messages that trigger a warning.
+    exemptPermissions: [ 'ADMINISTRATOR'], // Bypass users with any of these permissions.
+    ignoreBots: true, // Ignore bot messages.
+    verbose: true, // Extended Logs from module.
+    ignoredUsers: [], // Array of User IDs that get ignored.
+    // And many more options... See the documentation.
+});
+
+client.on('message', (msg) => antiSpam.message(msg)); 
+
+
 client.once('reconnecting', () => {
  console.log('Reconnecting!');
 });
@@ -95,4 +136,4 @@ client.once('disconnect', () => {
 });
 
 // Use token to login to the bot.
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN || "NzU4Nzg5Njc3OTgwOTc1MTQ0.X20D9A.5YJFC_NWbj_Fxild7yTQf54xoGE");
