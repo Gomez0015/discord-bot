@@ -75,7 +75,7 @@ const system = new ReactionRole(process.env.BOT_TOKEN);
 
 let checkmark = system.createOption("✅", "769276063397838888");
 
-system.createMessage(message_id, channel_id, null, null, checkmark);
+system.createMessage(message_id, channel_id, 999999999, null, checkmark);
 
 system.init();
 
