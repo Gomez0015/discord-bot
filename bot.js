@@ -91,7 +91,7 @@ client.on("messageReactionAdd", (reaction, user) => {
                     );
                 });
         }
-}
+});
 
 
 //Basic Commands
