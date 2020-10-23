@@ -59,7 +59,7 @@ cron.schedule('0 6 * * *', () => {
 
 //Welcome msg
 client.on('guildMemberAdd', member => {
-    member.guild.channels.cache.get('769280253268459520').send("@" + member.nickname + " Welcome to the sever! Read #please-read-first to verify."); 
+    member.guild.channels.cache.get('769280253268459520').send(member.nickname + " Welcome to the sever! Read #please-read-first to verify."); 
     var role = member.guild.roles.cache.find(role => role.name === "Not Verified");
     member.roles.add(role);
 });
@@ -78,7 +78,7 @@ client.on("ready", (reaction, user) => {
 
 client.on("messageReactionAdd", (reaction, user) => {
     if(reaction.emoji.id == "767608920134254652" && reaction.message.id === message_id) 
-        {
+    {
             guild.fetchMember(user) // fetch the user that reacted
                 .then((member) => 
                 {
@@ -90,7 +90,7 @@ client.on("messageReactionAdd", (reaction, user) => {
                     }
                     );
                 });
-        }
+    };
 });
 
 
