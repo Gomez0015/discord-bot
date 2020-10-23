@@ -71,9 +71,7 @@ let message_id = "767608920134254652";
 client.on("ready", (reaction, user) => {
     client.channels.get(channel_id).fetchMessage(message_id).then(m => {
             console.log("Cached reaction message.");
-        }).catch(e => {
-        console.error("Error loading message.");
-        console.error(e);
+    });
 });
 
 client.on("messageReactionAdd", (reaction, user) => {
@@ -82,12 +80,7 @@ client.on("messageReactionAdd", (reaction, user) => {
             .then((member) => 
             {
                 let role = (member.guild.roles.find(role => role.name === "Verified"));
-                member.addRole(role)
-                .then(() => 
-                {
-                    console.log(`Added the role to ${member.displayName}`);
-                }
-                );
+                member.addRole(role);
             });
     }
 });
