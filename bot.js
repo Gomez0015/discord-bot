@@ -16,8 +16,6 @@ prefix = process.env.BOT_PREFIX || "x";
 
 // Create a discord client.
 const client = new Discord.Client();
-// Use token to login to the bot.
-client.login(process.env.BOT_TOKEN);
 
 //Make a var for stop reminder.
 var stopReminder = false;
@@ -151,3 +149,6 @@ client.once('reconnecting', () => {
 client.once('disconnect', () => {
  console.log('Disconnect!');
 });
+
+// Use token to login to the bot.
+client.login(process.env.BOT_TOKEN);
