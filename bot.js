@@ -4,7 +4,7 @@ const cron = require('node-cron');
 const commands = require('./Commands.js');
 const badwordsArray = require('badwords/array');
 const AntiSpam = require('discord-anti-spam');
-
+const ReactionRole = require("reaction-role");
 //Turn array to full uppercase
 const finalBadwordsArray = badwordsArray.map(badwordsArray => badwordsArray.toUpperCase());
 
@@ -15,7 +15,6 @@ prefix = process.env.BOT_PREFIX || "x";
 
 // Create a discord client.
 const client = new Discord.Client();
-
 // Use token to login to the bot.
 client.login(process.env.BOT_TOKEN);
 
@@ -71,27 +70,13 @@ client.on('guildMemberAdd', member => {
 let channel_id = "767608509591846912"; 
 let message_id = "767608920134254652";
 
-client.on("ready", (reaction, user) => {
+const system = new ReactionRole(process.env.BOT_TOKEN);
 
-    client.channels.cache.get(channel_id).fetchMessage(message_id).then(m => {
-            console.log("Cached reaction message.");
-        }).catch(e => {
-        console.error("Error loading message.");
-        console.error(e);
-        });
-});
+let checkmark = system.createOption("✅", "769276063397838888");
 
-client.on("messageReactionAdd", (reaction, user) => {
-    if(reaction.emoji.id == "767608920134254652" && reaction.message.id === message_id) {
-        guild.fetchMember(user) // fetch the user that reacted
-            .then((member) => 
-            {
-                let role = (member.guild.roles.find(role => role.name === "Verified"));
-                member.addRole(role);
-            });
-    }
-});
+system.createMessage(message_id, channel_id, null, null, checkmark);
 
+system.init();
 
 //Basic Commands
 client.on('message', msg => {
