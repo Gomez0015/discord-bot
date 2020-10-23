@@ -1,6 +1,3 @@
-// Use token to login to the bot.
-client.login(process.env.BOT_TOKEN);
-
 // Require Modules
 const Discord = require("discord.js");
 const cron = require('node-cron');
@@ -18,6 +15,9 @@ prefix = process.env.BOT_PREFIX || "x";
 
 // Create a discord client.
 const client = new Discord.Client();
+
+// Use token to login to the bot.
+client.login(process.env.BOT_TOKEN);
 
 //Make a var for stop reminder.
 var stopReminder = false;
