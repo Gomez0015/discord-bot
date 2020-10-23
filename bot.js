@@ -136,4 +136,4 @@ client.once('disconnect', () => {
 });
 
 // Use token to login to the bot.
-client.login(process.env.BOT_TOKEN || "NzU4Nzg5Njc3OTgwOTc1MTQ0.X20D9A.5YJFC_NWbj_Fxild7yTQf54xoGE");
+client.login(process.env.BOT_TOKEN);
