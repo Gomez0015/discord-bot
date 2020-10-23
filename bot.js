@@ -61,8 +61,8 @@ cron.schedule('0 6 * * *', () => {
 //Welcome msg
 client.on('guildMemberAdd', member => {
     member.guild.channels.cache.get('769280253268459520').send(member.user.toString() + " Welcome to the sever! Read "  + member.guild.channels.cache.find(channel => channel.name === "please-read-first").toString() + " to verify."); 
-    var role = member.guild.roles.cache.find(role => role.name === "Not Verified");
-    member.roles.add(role);
+    var roleAdd = member.guild.roles.cache.find(role => role.name === "Not Verified");
+    member.roles.add(roleAdd);
 });
 
 //Adding Role when you React to msg
