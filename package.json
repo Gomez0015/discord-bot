@@ -7,7 +7,8 @@
     "badwords": "^1.0.0",
     "discord-anti-spam": "^2.4.1",
     "discord.js": "^12.4.0",
-    "node-cron": "^2.0.3"
+    "node-cron": "^2.0.3",
+    "reaction-role": "^2.1.6"
   },
   "devDependencies": {
     "discord.js": "^12.4.0",
