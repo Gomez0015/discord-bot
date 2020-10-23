@@ -77,20 +77,19 @@ client.on("ready", (reaction, user) => {
 });
 
 client.on("messageReactionAdd", (reaction, user) => {
-    if(reaction.emoji.id == "767608920134254652" && reaction.message.id === message_id) 
-    {
-            guild.fetchMember(user) // fetch the user that reacted
-                .then((member) => 
+    if(reaction.emoji.id == "767608920134254652" && reaction.message.id === message_id) {
+        guild.fetchMember(user) // fetch the user that reacted
+            .then((member) => 
+            {
+                let role = (member.guild.roles.find(role => role.name === "Verified"));
+                member.addRole(role)
+                .then(() => 
                 {
-                    let role = (member.guild.roles.find(role => role.name === "Verified"));
-                    member.addRole(role)
-                    .then(() => 
-                    {
-                        console.log(`Added the role to ${member.displayName}`);
-                    }
-                    );
-                });
-    };
+                    console.log(`Added the role to ${member.displayName}`);
+                }
+                );
+            });
+    }
 });
 
 
