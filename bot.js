@@ -62,7 +62,7 @@ cron.schedule('0 6 * * *', () => {
 
 //Welcome msg
 client.on('guildMemberAdd', member => {
-    member.guild.channels.cache.get('769280253268459520').send(member.nickname + " Welcome to the sever! Read" + message.guild.channels.find(channel => channel.name === "please-read-first").toString() + "to verify."); 
+    member.guild.channels.cache.get('769280253268459520').send(member.nickname + " Welcome to the sever! Read" + member.guild.channels.find(channel => channel.name === "please-read-first").toString() + "to verify."); 
     var role = member.guild.roles.cache.find(role => role.name === "Not Verified");
     member.roles.add(role);
 });
