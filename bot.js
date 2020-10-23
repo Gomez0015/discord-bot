@@ -1,3 +1,6 @@
+// Use token to login to the bot.
+client.login(process.env.BOT_TOKEN);
+
 // Require Modules
 const Discord = require("discord.js");
 const cron = require('node-cron');
@@ -162,6 +165,3 @@ client.once('reconnecting', () => {
 client.once('disconnect', () => {
  console.log('Disconnect!');
 });
-
-// Use token to login to the bot.
-client.login(process.env.BOT_TOKEN);
