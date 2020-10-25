@@ -67,9 +67,9 @@ client.on('guildMemberAdd', member => {
         .setColor('#FFD700')
         .setTitle('New Member')
         .setDescription(member.user.toString() + ' has just joined the server!')
-        .addField("Member #" + member.guilds.cache.reduce((a, g) => a + g.memberCount, 0))
+        .addField("Member #1")
         .setImage(member.author.avatarURL())
-        member.channel.send(embed)
+        member.channel.send(embed);
 });
 
 //Adding Role when you React to msg
