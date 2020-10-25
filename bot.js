@@ -65,7 +65,7 @@ client.on('guildMemberAdd', member => {
         .setColor('#FFD700')
         .setTitle('New Member')
         .setDescription(member.user.toString() + ' has just joined the server!')
-        .addField("Member #" + member.guild.members.cache.filter(member => !member.user.bot).size)
+        .addField("Member #" + client.guild.members.cache.filter(member => !member.user.bot).size)
         .setImage(member.user.avatarURL())
         member.channel.send(embed);
 
