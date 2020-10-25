@@ -63,13 +63,13 @@ client.on('guildMemberAdd', member => {
     member.guild.channels.cache.get('769280253268459520').send(member.user.toString() + " Welcome to the sever! Read "  + member.guild.channels.cache.find(channel => channel.name === "please-read-first").toString() + " to verify."); 
     var roleAdd = member.guild.roles.cache.find(role => role.name === "New Member");
     member.roles.add(roleAdd);
-    const embed = new Discord.MessageEmbed()
+    new Discord.MessageEmbed()
         .setColor('#FFD700')
         .setTitle('New Member')
-        .setDescription(member.user.toString() + ' has just joined the server!')
-        .addField("Member #" + member.guilds.cache.reduce((a, g) => a + g.memberCount, 0))
-        .setImage(member.author.avatarURL())
-        member.channel.send(embed)
+        .setDescription('Kush has just joined the server!')
+        .addField(message.guilds.cache.reduce((a, g) => a + g.memberCount, 0))
+        .setImage(message.author.avatarURL())
+        message.channel.send(embed)
 });
 
 //Adding Role when you React to msg
