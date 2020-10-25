@@ -60,14 +60,15 @@ cron.schedule('0 6 * * *', () => {
 
 //Welcome msg
 client.on('guildMemberAdd', member => {
-    member.guild.channels.cache.get('769280253268459520').send(member.user.toString() + " Welcome to the sever! Read "  + member.guild.channels.cache.find(channel => channel.name === "please-read-first").toString() + " to verify."); 
+    var welcomeChannelID = '769280253268459520';
+    member.guild.channels.cache.get(welcomeChannelID).send(member.user.toString() + " Welcome to the sever! Read "  + member.guild.channels.cache.find(channel => channel.name === "please-read-first").toString() + " to verify."); 
     const embed = new Discord.MessageEmbed()
         .setColor('#FFD700')
         .setTitle('New Member')
         .setDescription(member.user.toString() + ' has just joined the server!')
         .addField("Member #" + client.guild.members.cache.filter(member => !member.user.bot).size)
         .setImage(member.user.avatarURL())
-        member.guild.channels.cache.get('769280253268459520').send(embed);
+        member.guild.channels.cache.get(welcomeChannelID).send(embed);
 
     var roleAdd = member.guild.roles.cache.find(role => role.name === "New Member");
     member.roles.add(roleAdd);
