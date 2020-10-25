@@ -62,6 +62,8 @@ cron.schedule('0 6 * * *', () => {
 client.on('guildMemberAdd', member => {
     var welcomeChannelID = '769280253268459520';
     member.guild.channels.cache.get(welcomeChannelID).send(member.user.toString() + " Welcome to the sever! Read "  + member.guild.channels.cache.find(channel => channel.name === "please-read-first").toString() + " to verify."); 
+    var roleAdd = member.guild.roles.cache.find(role => role.name === "New Member");
+    member.roles.add(roleAdd);
     const embed = new Discord.MessageEmbed()
         .setColor('#FFD700')
         .setTitle('New Member')
@@ -69,9 +71,6 @@ client.on('guildMemberAdd', member => {
         .addField("Member #" + member.guild.members.cache.filter(member => !member.user.bot).size)
         .setImage(member.user.avatarURL())
         member.guild.channels.cache.get(welcomeChannelID).send(embed);
-
-    var roleAdd = member.guild.roles.cache.find(role => role.name === "New Member");
-    member.roles.add(roleAdd);
 });
 
 //Adding Role when you React to msg
