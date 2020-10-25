@@ -167,7 +167,7 @@ const dest = '769971398529515540';
 
 // Create a stream to follow tweets
 const stream = twitterClient.stream('statuses/filter', {
-  follow: '2899773086', // @Every3Minutes, specify whichever Twitter ID you want to follow
+  follow: '18856867', // @zerohedge, specify whichever Twitter ID you want to follow
 });
 
 // SOURCE:
