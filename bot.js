@@ -77,7 +77,7 @@ client.on('guildMemberAdd', member => {
 //Adding Role when you React to msg
 let channel_id = "767608509591846912"; 
 let message_id = "769843918979596288";
-
+// Bug
 const system = new ReactionRole(process.env.BOT_TOKEN);
 
 let checkmark = system.createOption("✅", "769276063397838888");
