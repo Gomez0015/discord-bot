@@ -5,6 +5,14 @@ const commands = require('./Commands.js');
 const badwordsArray = require('badwords/array');
 const AntiSpam = require('discord-anti-spam');
 const ReactionRole = require("reaction-role");
+const Twitter = require('twit');
+
+const twitterConf = {
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token: process.env.TWITTER_ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+  }
 
 //Turn array to full uppercase
 const finalBadwordsArray = badwordsArray.map(badwordsArray => badwordsArray.toUpperCase());
@@ -14,9 +22,9 @@ let basicResponseArray = commands.basicResponses;
 
 prefix = process.env.BOT_PREFIX || "x";
 
-// Create a discord client.
+// Create a discord/twitter client.
 const client = new Discord.Client();
-
+const twitterClient = new Twitter(twitterConf);
 //Make a var for stop reminder.
 var stopReminder = false;
 
@@ -76,8 +84,8 @@ client.on('guildMemberAdd', member => {
 
 //Adding Role when you React to msg
 let channel_id = "767608509591846912"; 
-let message_id = "769843918979596288";
-// Bug
+let message_id = "767608920134254652";
+
 const system = new ReactionRole(process.env.BOT_TOKEN);
 
 let checkmark = system.createOption("✅", "769276063397838888");
@@ -151,6 +159,36 @@ const antiSpam = new AntiSpam({
 
 client.on('message', (msg) => antiSpam.message(msg)); 
 
+
+//Get Twitter Feed
+
+// Specify destination channel ID below
+const dest = '769971398529515540'; 
+
+// Create a stream to follow tweets
+const stream = twitterClient.stream('statuses/filter', {
+  follow: '2899773086', // @Every3Minutes, specify whichever Twitter ID you want to follow
+});
+
+// SOURCE:
+// https://github.com/ttezel/twit/issues/286#issuecomment-236315960
+function isReply(tweet) {
+    if (tweet.retweeted_status
+      || tweet.in_reply_to_status_id
+      || tweet.in_reply_to_status_id_str
+      || tweet.in_reply_to_user_id
+      || tweet.in_reply_to_user_id_str
+      || tweet.in_reply_to_screen_name) return true;
+    return false;
+    }
+
+stream.on('tweet', tweet => {
+    if(isReply(tweet) == false){
+        const twitterMessage = `${tweet.user.name} (@${tweet.user.screen_name}) tweeted this: https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`
+        client.channels.get(dest).send(twitterMessage);
+        return false;
+    }
+});
 
 client.once('reconnecting', () => {
  console.log('Reconnecting!');

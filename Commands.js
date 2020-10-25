@@ -1,7 +1,7 @@
 exports.basicResponses = [
     {
-        question: "xdrawinggame",
-        answer: "https://sketchful.io/"
+        question: "xwhoareyou",
+        answer: "I am a divine being from outer space."
     }
 ];
 

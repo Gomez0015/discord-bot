@@ -4,11 +4,18 @@
   "description": "",
   "main": "bot.js",
   "dependencies": {
+    "async": "^3.2.0",
     "badwords": "^1.0.0",
+    "cheerio": "^1.0.0-rc.3",
     "discord-anti-spam": "^2.4.1",
     "discord.js": "^12.4.0",
     "node-cron": "^2.0.3",
-    "reaction-role": "^2.1.6"
+    "node-notifier": "^8.0.0",
+    "reaction-role": "^2.1.6",
+    "request": "^2.88.2",
+    "stream-tweets": "^1.1.0",
+    "twit": "^2.2.11",
+    "twitter-crawler": "^1.0.4"
   },
   "devDependencies": {
     "discord.js": "^12.4.0",
