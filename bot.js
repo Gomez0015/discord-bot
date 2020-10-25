@@ -67,7 +67,7 @@ client.on('guildMemberAdd', member => {
         .setDescription(member.user.toString() + ' has just joined the server!')
         .addField("Member #" + client.guild.members.cache.filter(member => !member.user.bot).size)
         .setImage(member.user.avatarURL())
-        member.channel.send(embed);
+        member.guild.channels.cache.get('769280253268459520').send(embed);
 
     var roleAdd = member.guild.roles.cache.find(role => role.name === "New Member");
     member.roles.add(roleAdd);
