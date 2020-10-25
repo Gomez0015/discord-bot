@@ -65,10 +65,9 @@ client.on('guildMemberAdd', member => {
     var roleAdd = member.guild.roles.cache.find(role => role.name === "New Member");
     member.roles.add(roleAdd);
     const embed = new Discord.MessageEmbed()
-        .setColor('#FFD700')
+        .setColor('#D00000')
         .setTitle('New Member')
-        .setDescription(member.user.toString() + ' has just joined the server!')
-        .addField("Member #" + member.guild.members.cache.filter(member => !member.user.bot).size)
+        .setDescription(member.user.toString() + ' has just joined the server! He is the ' + member.guild.members.cache.filter(member => !member.user.bot).size + 'th member to join.')
         .setImage(member.user.avatarURL());
 
     member.guild.channels.cache.get(welcomeChannelID).send(embed);
