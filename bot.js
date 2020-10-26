@@ -6,8 +6,7 @@ const badwordsArray = require('badwords/array');
 const AntiSpam = require('discord-anti-spam');
 const ReactionRole = require("reaction-role");
 const Twitter = require('twit');
-const MusicBot = require('discord-music-system'); // Require the best package ever created on NPM (= require discord-music-system)
-
+const MusicBot = require('discord-music-system');
 
 //Turn array to full uppercase
 const finalBadwordsArray = badwordsArray.map(badwordsArray => badwordsArray.toUpperCase());
@@ -107,11 +106,10 @@ system.createMessage(message_id, channel_id, 999999999, null, checkmark);
 
 system.init();
 
-//Basic Commands
+//Basic Commands And Music Commands
 client.on('message', msg => {
     if (msg.author.bot) return;
     if (msg.channel.type == "text") {
-
         if(message.content.startsWith(process.env.BOT_PREFIX)) { // If the message starts with your prefix
             bot.onMessage(message); // The music-system must read the message, to check if it is a music command and execute it.
             basicResponseArray.forEach(item => {
