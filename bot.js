@@ -110,8 +110,8 @@ system.init();
 client.on('message', msg => {
     if (msg.author.bot) return;
     if (msg.channel.type == "text") {
-        if(message.content.startsWith(process.env.BOT_PREFIX)) { // If the message starts with your prefix
-            bot.onMessage(message); // The music-system must read the message, to check if it is a music command and execute it.
+        if(msg.content.startsWith(process.env.BOT_PREFIX)) { // If the message starts with your prefix
+            bot.onMessage(msg); // The music-system must read the message, to check if it is a music command and execute it.
             basicResponseArray.forEach(item => {
                 if(msg.content === item.question){
                     msg.reply(item.answer);
