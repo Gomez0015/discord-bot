@@ -1,6 +1,6 @@
 exports.basicResponses = [
     {
-        question: "xwhoareyou",
+        question: "$whoareyou",
         answer: "I am a divine being from outer space."
     }
 ];

@@ -6,13 +6,8 @@ const badwordsArray = require('badwords/array');
 const AntiSpam = require('discord-anti-spam');
 const ReactionRole = require("reaction-role");
 const Twitter = require('twit');
+const MusicBot = require('discord-music-system'); // Require the best package ever created on NPM (= require discord-music-system)
 
-const twitterConf = {
-    consumer_key: process.env.TWITTER_CONSUMER_KEY,
-    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-    access_token: process.env.TWITTER_ACCESS_TOKEN_KEY,
-    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
-  }
 
 //Turn array to full uppercase
 const finalBadwordsArray = badwordsArray.map(badwordsArray => badwordsArray.toUpperCase());
@@ -20,11 +15,29 @@ const finalBadwordsArray = badwordsArray.map(badwordsArray => badwordsArray.toUp
 //Exports
 let basicResponseArray = commands.basicResponses;
 
-prefix = process.env.BOT_PREFIX || "x";
+prefix = process.env.BOT_PREFIX;
 
-// Create a discord/twitter client.
+//Configurations
+
+const twitterConf = {
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token: process.env.TWITTER_ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+}
+
+//Create Discord Client
 const client = new Discord.Client();
+
+const bot = new MusicBot({
+    botPrefix: process.env.BOT_PREFIX, // $
+    ytApiKey: process.env.YOUTUBE_API_KEY, // Video to explain how to get it: https://www.youtube.com/watch?v=VqML5F8hcRQ
+    botClient: client // Your Discord client. Here we're using discord.js so it's the Discord.Client()
+});
+
+// Create a twitter client.
 const twitterClient = new Twitter(twitterConf);
+
 //Make a var for stop reminder.
 var stopReminder = false;
 
@@ -98,14 +111,17 @@ system.init();
 client.on('message', msg => {
     if (msg.author.bot) return;
     if (msg.channel.type == "text") {
-        basicResponseArray.forEach(item => {
-            if(msg.content === item.question){
-                msg.reply(item.answer);
-            } 
-        });   
-        if(msg.content === "xcommands"){
+
+        if(message.content.startsWith(process.env.BOT_PREFIX)) { // If the message starts with your prefix
+            bot.onMessage(message); // The music-system must read the message, to check if it is a music command and execute it.
+            basicResponseArray.forEach(item => {
+                if(msg.content === item.question){
+                    msg.reply(item.answer);
+                } 
+            });
+        } else if (msg.content === "$commands"){
             msg.reply(JSON.stringify(allCommandsArray));
-        }            
+        }    
     }
 });
 

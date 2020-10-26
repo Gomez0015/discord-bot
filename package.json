@@ -8,6 +8,7 @@
     "badwords": "^1.0.0",
     "cheerio": "^1.0.0-rc.3",
     "discord-anti-spam": "^2.4.1",
+    "discord-music-system": "^3.0.31",
     "discord.js": "^12.4.0",
     "node-cron": "^2.0.3",
     "node-notifier": "^8.0.0",
