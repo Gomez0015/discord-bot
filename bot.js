@@ -49,33 +49,33 @@ client.once('ready', () => {
 });
 
 //Mary Pill Reminder Start
-client.once('ready', () => {
-    cron.schedule('*/5 7 * * *', () => {
-        if(stopReminder == false){ 
-            reminderTimer();
-        }
-    });
-});
+// client.once('ready', () => {
+//     cron.schedule('*/5 7 * * *', () => {
+//         if(stopReminder == false){ 
+//             reminderTimer();
+//         }
+//     });
+// });
 
-function reminderTimer(){
-    console.log("Sending Reminder..."); 
-    client.users.cache.get(process.env.MARY_ID).send("Take ur pills. Its an order.");      
-}
+// function reminderTimer(){
+//     console.log("Sending Reminder..."); 
+//     client.users.cache.get(process.env.MARY_ID).send("Take ur pills. Its an order.");      
+// }
 
-client.on('message', msg => {
-    if (msg.channel.type == "dm") {
-        if (msg.content === "Stop"){
-             stopReminder = true;
-             msg.reply("Reminder Stopped");
-             console.log("Stopping Reminder...");
-         }
-     }
-});
+// client.on('message', msg => {
+//     if (msg.channel.type == "dm") {
+//         if (msg.content === "Stop"){
+//              stopReminder = true;
+//              msg.reply("Reminder Stopped");
+//              console.log("Stopping Reminder...");
+//          }
+//      }
+// });
 
-cron.schedule('0 6 * * *', () => {
-    stopReminder = false;
-    console.log("Stop Reminder Set to false...")
-});
+// cron.schedule('0 6 * * *', () => {
+//     stopReminder = false;
+//     console.log("Stop Reminder Set to false...")
+// });
 //Mary Pill Reminder End
 
 //Welcome msg
